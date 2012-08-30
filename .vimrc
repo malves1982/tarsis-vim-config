@@ -53,6 +53,10 @@ Bundle 'rosenfeld/conque-term'
 " Pending tasks list
 Bundle 'fisadev/FixedTaskList.vim'
 
+Bundle 'akitaonrails/snipmate.vim'
+
+Bundle 'viniciuschagas/snipmate-snippets'
+
 " Bundles from vim-scripts repos
 
 " Autocompletition
@@ -65,6 +69,9 @@ Bundle 'IndexedSearch'
 Bundle 'matchit.zip'
 " Gvim colorscheme
 Bundle 'Wombat'
+
+Bundle 'sexy-railscasts'
+Bundle 'railscasts'
 
 " Installing plugins the first time
 if iCanHazVundle == 0
@@ -95,7 +102,7 @@ set ls=2
 set incsearch
 
 " highlighted search results
-set hlsearch
+set hlsearch!
 
 " line numbers
 set nu
@@ -221,7 +228,7 @@ nmap ,wr :RecurGrepFast <cword><CR>
 " run pep8+pyflakes validator
 autocmd FileType python map <buffer> ,8 :call Flake8()<CR>
 " rules to ignore (example: "E501,W293")
-let g:flake8_ignore=""
+let g:flake8_ignore="E501"
 
 " don't let pyflakes allways override the quickfix list
 let g:pyflakes_use_quickfix = 0
@@ -252,7 +259,8 @@ endif
 
 " colors for gvim
 if has('gui_running')
-    colorscheme wombat
+    colorscheme sexy-railscasts
+    set guifont=Monaco:h13
 endif
 
 " when scrolling, keep cursor 3 lines away from screen border
