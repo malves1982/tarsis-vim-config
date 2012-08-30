@@ -104,6 +104,9 @@ set incsearch
 " highlighted search results
 set hlsearch!
 
+" delete highlight search
+nnoremap <backspace> :noh<CR>
+
 " line numbers
 set nu
 
