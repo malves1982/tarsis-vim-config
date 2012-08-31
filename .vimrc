@@ -105,7 +105,7 @@ set incsearch
 set hlsearch!
 
 " delete highlight search
-nnoremap <backspace> :noh<CR>
+nnoremap <silent> <backspace> :noh<CR>
 
 " line numbers
 set nu
@@ -275,4 +275,8 @@ set wildmode=list:longest
 
 " to use fancy symbols for powerline, uncomment the following line and use a
 " patched font (more info on the README.rst)
-" let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
+
+"Bad whitespaces
+autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
+autocmd BufEnter * match BadWhitespace /\s\+$/      
