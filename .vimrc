@@ -229,7 +229,7 @@ nmap ,wR :RecurGrep <cword><CR>
 nmap ,wr :RecurGrepFast <cword><CR>
 
 " run pep8+pyflakes validator
-autocmd FileType python map <buffer> ,8 :call Flake8()<CR>
+autocmd BufWriteCmd *.py call Flake8()
 " rules to ignore (example: "E501,W293")
 let g:flake8_ignore="E501"
 
