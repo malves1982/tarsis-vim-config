@@ -91,9 +91,9 @@ set softtabstop=4
 set shiftwidth=4
 
 " tablength exceptions
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " always show status bar
 set ls=2
@@ -219,19 +219,21 @@ nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
 nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
 " Don't change working directory
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'find %s -type f ! -regex ".*.git/.*" | grep -v "\(pyc\|swp\)$"'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " simple recursive grep
 command! -nargs=1 RecurGrep lvimgrep /<args>/gj ./**/*.* | lopen | set nowrap
 command! -nargs=1 RecurGrepFast silent exec 'lgrep! <q-args> ./**/*.*' | lopen
-nmap ,R :RecurGrep 
-nmap ,r :RecurGrepFast 
+nmap ,R :RecurGrep
+nmap ,r :RecurGrepFast
 nmap ,wR :RecurGrep <cword><CR>
 nmap ,wr :RecurGrepFast <cword><CR>
 
 " run pep8+pyflakes validator
 autocmd BufWriteCmd *.py call Flake8()
 " rules to ignore (example: "E501,W293")
-let g:flake8_ignore="E501"
+let g:flake8_ignore="E501,W391"
 
 " don't let pyflakes allways override the quickfix list
 let g:pyflakes_use_quickfix = 0
@@ -279,4 +281,7 @@ let g:Powerline_symbols = 'fancy'
 
 "Bad whitespaces
 autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
-autocmd BufEnter * match BadWhitespace /\s\+$/      
+autocmd BufEnter * match BadWhitespace /\s\+$/
+
+" Use Node.js for JavaScript interpretation
+let $JS_CMD='node'
